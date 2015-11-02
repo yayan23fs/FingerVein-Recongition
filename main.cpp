@@ -14,9 +14,10 @@ using namespace cv;
 
 int main()
 {
-    cout<<CV_VERSION;   //test opencv is working
+    cout<<CV_VERSION;   //  Test if OpenCV is working
 
-/* ================ Declare variable ======================*/
+
+    /* ================ Varable Declaration ======================*/
     char str[50];
     Mat *pics = new Mat[100];
 
@@ -25,14 +26,11 @@ int main()
     int numberNodes_inputImg     = 0;   //計算結點數
     int numberNodes_referenceImg = 0;
 
-
     SkeletonNodes skelPoint_i[100];
     SkeletonNodes skelPoint_r[100];
 
-
-    clock_t start ,finish;
-    
-/*=========================================================*/
+    clock_t start ,finish;  //Time estimate
+    /*=========================================================*/
 
     //連續讀圖
     for(int i=0;i<3;i++)
@@ -41,21 +39,23 @@ int main()
         {
             sprintf(str,"/Users/Leque/Desktop/photo/cgalfinger%d%d.bmp",i,j);//產生連續圖片
             pics[counter]=imread(str,0);
-            cout<<str<<endl;
+//            cout<<str<<endl;
             counter++;
             if(i==2 & j==0)break;
         }
     }
     imshow("Original",pics[1]);
+    Size size = pics[1].size();
+    cout<<"pic size ="<<size<<endl;
 
     //算每張圖的ROI
-//    #pragma omp parallel for num_threads(8)
+    //    #pragma omp parallel for num_threads(8)
     for(int i=1;i<=counter;i++){
         findROI_CGAL(pics[i], 2, 70, 70);
     }
     imshow("ROI",pics[1]);
 
-//    ContrastEnhancement(pics[2]);
+    //    ContrastEnhancement(pics[2]);
     localContrastGlobal(pics[1],20);
     binarization(pics[1],90,30);
     PGF(pics[1], 2);
@@ -64,8 +64,8 @@ int main()
     cout<<numberNodes_inputImg;
 
 
-
-
+    
+    
     waitKey(0);
     delete [] pics;
     return 0;
