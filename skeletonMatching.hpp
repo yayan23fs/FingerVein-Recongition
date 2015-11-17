@@ -13,10 +13,12 @@
 #include <opencv2/opencv.hpp>
 #include "SkeletonNodes.h"
 #include "vectorConnectNodes.hpp"
-
+//#include "main.cpp"
 
 using namespace cv;
 
+
 float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int numberNodes_referenceImg,int block_searchRange, int threshold_pointDist);
 
+float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int numberNodes_referenceImg,int block_searchRange, int threshold_pointDist, SkeletonNodes skelPoint_i[] , SkeletonNodes skelPoint_r[] );
 #endif /* skeletonMatching_hpp */

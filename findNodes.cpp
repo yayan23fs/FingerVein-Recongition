@@ -73,6 +73,7 @@ int findNodes(Mat dataMat, int block_showPoints, SkeletonNodes skelPoints[])
     }
 
     // Show skeleton nodes , 4x4 mask on it
+#if 0
     for( int c = 0; c < count_skelNodes; c++ )
     {
         if( skelPoints[c].getNodeType() == 1 )
@@ -117,7 +118,8 @@ int findNodes(Mat dataMat, int block_showPoints, SkeletonNodes skelPoints[])
             ptr[x] = pixelData[y*width+x];
         }
     }
-    imshow("FindNode", dataMat);
-    
+#endif
+//    imshow("FindNode", dataMat);
+
     return count_skelNodes;
 }

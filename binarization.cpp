@@ -25,6 +25,6 @@ void binarization(Mat dataMat,int T_Bin, int maskSize)
                 dataMat.data[width*y+x]=0;
         }
     }
-    imshow("binarization", dataMat);
-    
+//    imshow("binarization", dataMat);
+
 }

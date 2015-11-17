@@ -83,6 +83,7 @@ void thinning(Mat dataMat)
         }
     }
 
+
     for( int i = 0; i < width*height; i++)
         pixelData[i]  = ((pixelData[i]==0)?1:0);
 
@@ -134,5 +135,5 @@ void thinning(Mat dataMat)
         }
     }
     
-    imshow("Thinning", dataMat);
+//    imshow("Thinning", dataMat);
 }

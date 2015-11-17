@@ -8,14 +8,19 @@
 
 #include "skeletonMatching.hpp"
 
-float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int numberNodes_referenceImg,int block_searchRange, int threshold_pointDist)
+
+
+float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int numberNodes_referenceImg,int block_searchRange, int threshold_pointDist, SkeletonNodes skelPoint_i[], SkeletonNodes skelPoint_r[] )
 {
     int width =dataMat.cols;//320
     int height=dataMat.rows;//240
     int pixelDataIn[width*height];
     int pixelDataRef[width*height];
-    SkeletonNodes skelPoint_i[100];
-    SkeletonNodes skelPoint_r [100];
+    //    SkeletonNodes skelPoint_i[100];
+    //    SkeletonNodes skelPoint_r [100];
+
+    double pointDist_cnt=0;
+    double number_connect_cnt=0;
 
 
     uchar *ptr;
@@ -55,13 +60,19 @@ float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int nu
                 <= block_searchRange )
                && (number_connect_i == number_connect_r) )
             {
+
+                number_connect_cnt++;
                 node_vectorScore_input = vectorConnectNodes(pixelDataIn, height, width, pos1_x, pos1_y,
                                                             pos1_x, pos1_y, pos1_x, pos1_y, skelPoint_i, numberNodes_inputImg);
                 node_vectorScore_reference = vectorConnectNodes(pixelDataRef, height, width, pos2_x, pos2_y,
                                                                 pos2_x, pos2_y, pos2_x, pos2_y, skelPoint_r, numberNodes_referenceImg);
 
                 if(abs(node_vectorScore_input - node_vectorScore_reference) < threshold_pointDist )
+                {
                     cnt_match = 1;
+                    pointDist_cnt++;
+
+                }
                 if( cnt_match == 1 )
                 {
                     count_matchedSkeletonNodes++;
@@ -71,9 +82,11 @@ float skeletonMatching(Mat dataMat, Mat refMat, int numberNodes_inputImg, int nu
             }
         }
     }
+    std::cout<< "number_connect_cnt = " << (number_connect_cnt/(numberNodes_referenceImg*numberNodes_inputImg))*100 << "%"<<std::endl;
+//    std::cout<< "number_connect_cnt = " << number_connect_cnt << "%"<<std::endl;
+//    std::cout << (pointDist_cnt/(numberNodes_referenceImg*numberNodes_inputImg))*100<<"%"<<std::endl;
 
     score_matching = (float)(count_matchedSkeletonNodes / numberNodes_inputImg);
-    
-    
+
     return score_matching;
 }

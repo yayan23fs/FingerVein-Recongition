@@ -20,20 +20,9 @@
 #include "vectorConnectNodes.hpp"
 #include "skeletonMatching.hpp"
 #include "findROI_CGAL.h"
+#include "alignment.hpp"
+#include "iqaMatching.hpp"
 
-using namespace std;
-using namespace cv;
-/*------------------------------------------------------------*/
-//Mat getHistImg(const MatND& hist);
-//void findROI_CGAL(Mat dataMat, int block_remove_undesir,
-//                  int numberCutBlackLine, int numberFillBlackLine);
-//void ContrastEnhancement(Mat dataMat);
-//void localContrastGlobal(Mat dataMat, int maskSize);
-//void binarization(Mat dataMat,int T_Bin, int maskSize);
-//void PGF(Mat dataMat , int blockSize);
-//void thinning(Mat dataMat);
-//int findNodes(Mat dataMat, int block_showPoints, SkeletonNodes skelPoints[]);
 
-/*------------------------------------------------------------*/
 
 #endif

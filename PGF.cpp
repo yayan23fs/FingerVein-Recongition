@@ -41,5 +41,5 @@ void PGF(Mat dataMat , int blockSize)
         }
     }
 
-    imshow("PFG", dataMat);
+//    imshow("PFG", dataMat);
 }

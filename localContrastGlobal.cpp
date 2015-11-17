@@ -48,7 +48,6 @@ void localContrastGlobal(Mat dataMat, int maskSize){
         }
     }
 
-    
-    imshow("localContrastGlobal", dataMat );
-    
+
+
 }
